@@ -34,6 +34,11 @@ export default {
 					foreground: 'hsl(var(--secondary-foreground))',
 					light: 'hsl(var(--secondary-light))'
 				},
+				gold: {
+					DEFAULT: 'hsl(var(--secondary))',
+					accent: 'hsl(var(--gold-accent))',
+					light: 'hsl(var(--secondary-light))'
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
@@ -74,11 +79,13 @@ export default {
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-hero': 'var(--gradient-hero)'
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-gold': 'var(--gradient-gold)'
 			},
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
-				'card': 'var(--shadow-card)'
+				'card': 'var(--shadow-card)',
+				'gold': 'var(--shadow-gold)'
 			},
 			transitionProperty: {
 				'smooth': 'var(--transition-smooth)'
