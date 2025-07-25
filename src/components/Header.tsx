@@ -12,7 +12,7 @@ const Header = () => {
     { name: 'Services', href: '/services' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Customer Portal', href: '/portal', special: true },
+    { name: 'Customer Portal', href: '/portal' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -54,25 +54,17 @@ const Header = () => {
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              item.special ? (
-                <Button key={item.name} variant="outline" size="sm" asChild>
-                  <Link to={item.href}>
-                    {item.name}
-                  </Link>
-                </Button>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`transition-colors hover:text-primary ${
-                    isActive(item.href) 
-                      ? 'text-primary font-medium border-b-2 border-primary' 
-                      : 'text-foreground'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              )
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`transition-colors hover:text-primary ${
+                  isActive(item.href) 
+                    ? 'text-primary font-medium border-b-2 border-primary' 
+                    : 'text-foreground'
+                }`}
+              >
+                {item.name}
+              </Link>
             ))}
             <Button variant="quote" size="lg" asChild>
               <Link to="/#quote">Get Free Quote</Link>
@@ -96,31 +88,16 @@ const Header = () => {
           <div className="md:hidden mt-4 pb-4 border-t">
             <div className="flex flex-col space-y-4 mt-4">
               {navigation.map((item) => (
-                item.special ? (
-                  <Button 
-                    key={item.name} 
-                    variant="outline" 
-                    size="sm" 
-                    asChild 
-                    className="w-full"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Link to={item.href}>
-                      {item.name}
-                    </Link>
-                  </Button>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`transition-colors hover:text-primary py-2 ${
-                      isActive(item.href) ? 'text-primary font-medium' : 'text-foreground'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`transition-colors hover:text-primary py-2 ${
+                    isActive(item.href) ? 'text-primary font-medium' : 'text-foreground'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
               <Button variant="quote" size="lg" asChild className="w-full">
                 <Link to="/#quote" onClick={() => setIsMenuOpen(false)}>
