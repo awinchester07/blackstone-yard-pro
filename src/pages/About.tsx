@@ -51,23 +51,11 @@ const About = () => {
       {/* Hero Section */}
       <section className="py-16 bg-gradient-hero text-primary-foreground">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-8">
-                <img 
-                  src="/lovable-uploads/815b13a5-9161-48a7-8d15-9c3e96a4f4ef.png" 
-                  alt="Wally the Wolf - Blackstone Mascot"
-                  className="w-48 h-48 object-contain"
-                />
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-                About Blackstone Home & Lawn
-              </h1>
-              <p className="text-xl text-primary-foreground/90 leading-relaxed">
-                Meet Wally the Wolf, our mascot who represents the Blackstone spirit - 
-                reliable, hardworking, and always ready to tackle any home or lawn challenge!
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">About Blackstone Home & Lawn</h1>
+            <p className="text-xl md:text-2xl mb-8 opacity-90">
+              Your trusted local partner for professional home maintenance and beautiful landscapes since 2019.
+            </p>
           </div>
         </div>
       </section>

@@ -93,17 +93,9 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right side - Quote Form with Wally */}
+            {/* Right side - Quote Form */}
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-md">
-                {/* Wally mascot */}
-                <div className="hidden lg:block absolute -top-16 -right-8 z-20">
-                  <img 
-                    src="/lovable-uploads/815b13a5-9161-48a7-8d15-9c3e96a4f4ef.png" 
-                    alt="Wally the Wolf - Blackstone Mascot"
-                    className="w-32 h-32 object-contain"
-                  />
-                </div>
                 <QuoteForm />
               </div>
             </div>
