@@ -53,17 +53,17 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             {/* Left side - Hero content */}
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 Professional Home & 
                 <span className="text-secondary"> Lawn Care</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
                 Your trusted partner for all home maintenance and beautiful landscapes. 
                 Licensed, insured, and committed to excellence.
               </p>
               
               {/* Why Choose Us - Quick Points */}
-              <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 text-sm sm:text-base">
                 <div className="flex items-center space-x-2">
                   <Shield className="h-5 w-5 text-secondary flex-shrink-0" />
                   <span>Licensed & Insured</span>
