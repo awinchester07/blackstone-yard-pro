@@ -17,7 +17,9 @@ import {
   Save,
   Edit3
 } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { auth, storage } from "@/lib/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -36,38 +38,29 @@ const AdminDashboard = () => {
   const [contactEmail, setContactEmail] = useState("info@lawncare.com");
 
   useEffect(() => {
-    checkUser();
+    const unsubscribe = checkUser();
+    return () => unsubscribe();
   }, []);
 
-  const checkUser = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
+  const checkUser = () => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate("/admin/login");
-        return;
+      } else {
+        setUser(user);
       }
-      setUser(user);
-    } catch (error) {
-      navigate("/admin/login");
-    } finally {
       setLoading(false);
-    }
+    });
+    
+    return unsubscribe;
   };
 
   const handleLogout = async () => {
     try {
-      await supabase.auth.signOut();
-      toast({
-        title: "Logged Out",
-        description: "You have been successfully logged out.",
-      });
+      await signOut(auth);
       navigate("/admin/login");
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to log out",
-        variant: "destructive",
-      });
+      console.error("Error signing out:", error);
     }
   };
 
@@ -87,27 +80,19 @@ const AdminDashboard = () => {
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}.${fileExt}`;
       
-      const { data, error } = await supabase.storage
-        .from('website-images')
-        .upload(fileName, file);
-
-      if (error) {
-        toast({
-          title: "Upload Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-        return;
-      }
+      const storageRef = ref(storage, fileName);
+      
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
 
       toast({
         title: "Image Uploaded",
         description: "Image has been uploaded successfully!",
       });
-    } catch (error) {
+    } catch (error: any) {
       toast({
-        title: "Error",
-        description: "Failed to upload image",
+        title: "Upload Failed",
+        description: error.message || "Failed to upload image",
         variant: "destructive",
       });
     }

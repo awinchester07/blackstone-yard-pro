@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Shield, AlertCircle } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,31 +21,19 @@ const AdminLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+    
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        toast({
-          title: "Login Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Login Successful",
-          description: "Welcome to the admin dashboard!",
-        });
-        navigate("/admin/dashboard");
-      }
-    } catch (error) {
+      await signInWithEmailAndPassword(auth, email, password);
       toast({
-        title: "Error",
-        description: "An unexpected error occurred",
+        title: "Login Successful",
+        description: "Welcome to the admin dashboard!",
+      });
+      navigate("/admin/dashboard");
+    } catch (error: any) {
+      toast({
         variant: "destructive",
+        title: "Login Failed",
+        description: error.message || "An unexpected error occurred",
       });
     } finally {
       setLoading(false);
