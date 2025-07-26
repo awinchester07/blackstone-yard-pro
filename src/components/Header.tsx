@@ -42,14 +42,12 @@ const Header = () => {
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-gradient-primary text-primary-foreground font-bold text-xl px-3 py-2 rounded-lg">
-              BH&L
-            </div>
-            <div>
-              <div className="font-bold text-xl text-primary">Blackstone</div>
-              <div className="text-sm text-muted-foreground">Home & Lawn</div>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/804df74c-9d46-469e-9416-edf058ed8c4e.png" 
+              alt="Blackstone Home & Lawn" 
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop navigation */}
